@@ -1,11 +1,69 @@
-<% set_meta_tags title: data.site.name +
-  " | " + data.site.description,
+<% set_meta_tags title: data.site.name,
   full_title: false %>
 
-<div class="bg-indigo-900 text-center py-4 lg:px-4">
-  <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-    <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
-    <span class="font-semibold mr-2 text-left flex-auto">Get the coolest t-shirts from our brand new store</span>
-    <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+<div class="flex-col w-full h-full justify-between bg-teal-300 flex" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
+  <div class="font-bold text-3xl text-white text-center mx-4 my-2">
+    Still guessing where<br>
+    it’s all going?
+  </div>
+  <div id="el" class="flex-1 flex justify-around overflow-x-hidden relative" style="width: 300vw; transition-duration: .3s; transition-timing-function: ease-out;">
+    <img src="/images/1.png" class="object-contain select-none">
+    <img src="/images/2.png" class="object-contain select-none">
+    <img src="/images/1.png" class="object-contain select-none">
+  </div>
+  <div class="text-2xl text-center text-white font-bold my-2">
+    Amal magically breaks <br>
+    down your spending
+  </div>
+  <div class="rounded-full bg-green-400 py-2 mx-8 mt-2 mb-4 font-bold text-green-700 text-xl text-center ">
+    get early access
   </div>
 </div>
+
+<script>
+  var initialX, offsetX = 0;
+  var curScreen = 0, numScreens = 3;
+  var screenWidth;
+
+  function downHandler(ev) {
+    initialX = ev.clientX;
+    el.onpointermove = moveHandler;
+  }
+
+  function moveHandler(ev) {
+    el.style.left = offsetX + (ev.clientX - initialX) + 'px';
+  }
+
+  function cancelHandler(ev) {
+    var offset = ev.clientX - initialX;
+    var nextScreen;
+
+    if(offset > 0) {
+      // swiped right
+      curScreen = curScreen - 1 < 0 ? curScreen : curScreen - 1;
+    } else {
+      // swiped left
+      curScreen = curScreen + 1 < numScreens ? curScreen + 1 : curScreen;
+    }
+
+    // Latch to nearest edge
+    offsetX = -1 * curScreen * screenWidth;
+    el.style.left = offsetX + 'px';
+
+    // release move binding
+    el.onpointermove = null;
+  }
+
+  document.addEventListener('DOMContentLoaded', function(e) {
+    // Register event handlers
+    el.onpointerdown = downHandler;
+    el.onpointercancel = cancelHandler;
+    el.onpointerup = cancelHandler;
+
+    screenWidth = el.clientWidth / numScreens;
+  });
+
+  window.addEventListener('resize', function(e) {
+    screenWidth = el.clientWidth / numScreens;
+  });
+</script>
