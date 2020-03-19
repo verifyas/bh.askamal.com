@@ -1,5 +1,4 @@
-<% set_meta_tags title: data.site.name +
-  " | " + data.site.description,
+<% set_meta_tags title: data.site.name,
   full_title: false %>
 
 <div class="flex-col w-full h-full justify-between bg-teal-300 flex" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
@@ -46,7 +45,6 @@
       // swiped left
       curScreen = curScreen + 1 < numScreens ? curScreen + 1 : curScreen;
     }
-    console.log("curScreen", curScreen, offset);
 
     // Latch to nearest edge
     offsetX = -1 * curScreen * screenWidth;
@@ -62,6 +60,10 @@
     el.onpointercancel = cancelHandler;
     el.onpointerup = cancelHandler;
 
-    screenWidth = el.clientWidth / 3;
+    screenWidth = el.clientWidth / numScreens;
+  });
+
+  window.addEventListener('resize', function(e) {
+    screenWidth = el.clientWidth / numScreens;
   });
 </script>
