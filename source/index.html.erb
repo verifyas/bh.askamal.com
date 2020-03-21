@@ -7,10 +7,10 @@
     Still guessing where<br>
     it’s all going?
   </div>
-  <div id="el" class="flex flex-1 overflow-y-hidden justify-around relative items-center" style="transition-duration: .3s; transition-timing-function: ease-out;">
-    <img src="/images/1.svg" draggable="false" class="select-none pointer-events-none max-h-full" style="transition-duration: .3s; transition-timing-function: ease-out;">
-    <img src="/images/2.png" draggable="false" class="select-none pointer-events-none max-h-full" style="transition-duration: .3s; transition-timing-function: ease-out;">
-    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full" style="transition-duration: .3s; transition-timing-function: ease-out;">
+  <div id="el" class="flex flex-1 overflow-y-hidden justify-around relative items-center" >
+    <img src="/images/1.svg" draggable="false" class="select-none pointer-events-none max-h-full">
+    <img src="/images/2.png" draggable="false" class="select-none pointer-events-none max-h-full" >
+    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full" >
   </div>
   <div class="text-2xl text-center text-white font-bold my-2">
     Amal magically breaks <br>
@@ -21,6 +21,13 @@
   </div>
 </div>
 
+<style>
+#el, #el > img {
+  transition-property: transform; 
+  transition-duration: .3s; 
+  transition-timing-function: ease-out;
+}
+</style>
 <script>
   var initialX, offsetX, curScreen = 0;
   var screenWidth;
@@ -86,8 +93,8 @@
 
   function updateHeights() {
     document.querySelectorAll('#el > img').forEach(function(img, index) {
-      var maxHeight = index == curScreen ? 100 : 100 * heightFactor;
-      img.style.maxHeight = `${maxHeight}%`;
+      var scale = index == curScreen ? 1 : heightFactor;
+      img.style.transform = `scale(${scale})`;
     });
   }
 
