@@ -7,9 +7,9 @@
     it’s all going?
   </div>
   <div id="el" class="flex flex-1 overflow-y-hidden justify-around relative items-center" style="transition-duration: .3s; transition-timing-function: ease-out;">
-    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full">
-    <img src="/images/2.png" draggable="false" class="select-none pointer-events-none max-h-full">
-    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full">
+    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full" style="transition-duration: .3s; transition-timing-function: ease-out;">
+    <img src="/images/2.png" draggable="false" class="select-none pointer-events-none max-h-full" style="transition-duration: .3s; transition-timing-function: ease-out;">
+    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full" style="transition-duration: .3s; transition-timing-function: ease-out;">
   </div>
   <div class="text-2xl text-center text-white font-bold my-2">
     Amal magically breaks <br>
@@ -23,12 +23,13 @@
 <script>
   var initialX, offsetX, curScreen = 0;
   var screenWidth;
-  const numScreens = 3, widthRatio = .65;
+  const numScreens = 3, widthFactor = .65, heightFactor = .9;
 
   function loadScreen(nextScreen) {
     // Uses the globals numScreens, curScreen, offsetX, el
     curScreen = clamp(0, numScreens - 1)(nextScreen);
     updateOffset();
+    updateHeights();
   }
 
   // DOM event handlers
@@ -39,6 +40,7 @@
     el.onpointerup = upHandler;
 
     updateScreenWidth();
+    updateHeights();
   });
 
   function downHandler(ev) {
@@ -79,6 +81,13 @@
     // Update offset
     offsetX = -widthFactor * curScreen * screenWidth + offsetFromEdge;
     el.style.transform = `translateX(${offsetX}px)`;
+  }
+
+  function updateHeights() {
+    document.querySelectorAll('#el > img').forEach(function(img, index) {
+      var maxHeight = index == curScreen ? 100 : 100 * heightFactor;
+      img.style.maxHeight = `${maxHeight}%`;
+    });
   }
 
   // Utility functions
