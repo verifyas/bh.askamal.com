@@ -2,6 +2,8 @@
   full_title: false %>
 <% set_meta_tags "theme-color": "#3E40F8" %>
 
+<div class="animated-bg"></div>
+
 <div class="flex-col w-full h-full justify-between bg-teal-300 flex overflow-x-hidden" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
   <div class="text-3xl text-white text-center mx-4 my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.05;">
     Still guessing where<br>
@@ -49,6 +51,7 @@
 
     updateScreenWidth();
     updateHeights();
+    createBgElements();
   });
 
   function downHandler(ev) {
@@ -98,7 +101,80 @@
     });
   }
 
-  // Utility functions
+  // Background related
+  function createBgElements() {
+    window.setInterval(refreshElements, 250);
+  }
+
+  function refreshElements() {
+    const MAX_NUM_ELEMENTS = 10;
+    var elems = document.querySelectorAll('.animated-bg > .single.on');
+    // var elems = document.querySelectorAll('.animated-bg > .single:not(.on)');
+    if (elems.length > MAX_NUM_ELEMENTS) { return }
+
+    for(var i = 0; i < MAX_NUM_ELEMENTS - elems.length; i++) {
+      createSingleElement();
+    }
+  }
+
+  function createSingleElement() {
+    const root = document.querySelector('.animated-bg');
+    const elem = document.createElement('div');
+    root.appendChild(elem);
+
+    elem.classList.add('single');
+    elem.addEventListener('transitionend', destroyElement);
+
+    // pick a point along the circumference of the elem
+    const elemWidth = root.clientWidth;
+    const elemHeight = root.clientHeight;
+    const circumference = 2 * (elemWidth + elemHeight); // in px
+    const point = Math.round(Math.random() * circumference);
+    
+    // transform to that zpoint, and turn on the animation
+    var result = pointToCoords(point, elemWidth, elemHeight);
+    elem.style.left = result[0] + 'px';
+    elem.style.top = result[1] + 'px';
+    // elem.style.transform += ` translate(${result[0]}px, ${result[1]}px)`;
+
+    elem.style.transitionDelay = Math.random() + 's';
+    elem.classList.add('on');
+  }
+
+  function pointToCoords(point, screenWidth, screenHeight) {
+    /**
+     * Converts a point on a rectangle to x, y:
+     *
+     *     ------
+     *     |    |
+     *     |    |
+     *     ---*--
+     *
+     */
+    var x, y;
+    if(point <= screenWidth) {
+      x = point;
+      y = 0;
+    } else if(point > screenWidth && point <= screenWidth + screenHeight) {
+      x = screenWidth;
+      y = point - screenWidth;
+    } else if(point > screenWidth + screenHeight &&  point <= 2 * screenWidth + screenHeight) {
+      x = 2 * screenWidth + screenHeight - point;
+      y = screenHeight;
+    } else {
+      x = 0;
+      y = 2 * screenWidth + 2 * screenHeight - point;
+    }
+    
+    return [x, y];
+  }
+
+  function destroyElement(event) {
+    if(event.target.parentNode) {
+      event.target.parentNode.removeChild(event.target);
+    }
+  }
+
   const clamp = (min, max) => (value) =>
     value < min ? min : value > max ? max : value;
 </script>
