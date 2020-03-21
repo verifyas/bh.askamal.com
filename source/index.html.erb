@@ -2,6 +2,8 @@
   full_title: false %>
 <% set_meta_tags "theme-color": "#3E40F8" %>
 
+<div class="animated-bg"></div>
+
 <div class="flex-col w-full h-full justify-between bg-teal-300 flex overflow-x-hidden" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
   <div class="text-3xl text-white text-center mx-4 my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.05;">
     Still guessing where<br>
@@ -49,6 +51,7 @@
 
     updateScreenWidth();
     updateHeights();
+    createBgElements();
   });
 
   function downHandler(ev) {
@@ -98,7 +101,69 @@
     });
   }
 
-  // Utility functions
+  // Background related
+  function createBgElements() {
+    window.setInterval(refreshElements, 250);
+  }
+
+  function refreshElements() {
+    const MAX_NUM_ELEMENTS = 10;
+    var elems = document.querySelectorAll('.animated-bg > .single.on');
+    if (elems.length < MAX_NUM_ELEMENTS) createSingleElement(); // per interval
+  }
+
+  function createSingleElement() {
+    const IMAGES = [
+      '/images/bg-hand.svg',
+      '/images/bg-home.svg',
+      '/images/bg-insurance.svg',
+      '/images/bg-shopping.svg',
+      '/images/bg-eat.svg',
+    ];
+    const imageIndex = Math.floor(Math.random() * IMAGES.length);
+
+    const root = document.querySelector('.animated-bg');
+    const elem = document.createElement('div');
+    root.appendChild(elem);
+
+    elem.classList.add('single');
+    elem.addEventListener('transitionend', destroyElement);
+
+    // pick a point along the circumference of the elem
+    const elemWidth = root.clientWidth;
+    const elemHeight = root.clientHeight;
+    const circumference = 2 * (elemWidth + elemHeight); // in px
+    const point = Math.round(Math.random() * circumference);
+    
+    // transform to that zpoint, and turn on the animation
+    var coords = generateCoords(elemWidth, elemHeight);
+    elem.style.left = coords[0] + 'px';
+    elem.style.top = coords[1] + 'px';
+    elem.style.transform = ` scale(${Math.round(Math.random() * 3)}) rotate(270deg)`;
+    // elem.style.transform += ` translate(${result[0]}px, ${result[1]}px)`;
+
+    elem.style.backgroundImage = `url(${IMAGES[imageIndex]})`;
+    elem.style.transitionDelay = 3 * Math.random() + 's';
+    elem.classList.add('on');
+  }
+
+  function generateCoords(screenWidth, screenHeight) {
+    const CLEARANCE = 200; // distance travelled beyond the edge
+
+    // We want the points to travel along the left/right sides, avoiding
+    // the text on the top/bottom of the page
+    var x = Math.random() < 0.5 ? 0 - CLEARANCE : screenWidth + CLEARANCE;
+    var y = Math.random() * screenHeight;
+    
+    return [x, y];
+  }
+
+  function destroyElement(event) {
+    if(event.target.parentNode) {
+      event.target.parentNode.removeChild(event.target);
+    }
+  }
+
   const clamp = (min, max) => (value) =>
     value < min ? min : value > max ? max : value;
 </script>
