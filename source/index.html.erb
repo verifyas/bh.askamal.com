@@ -102,12 +102,15 @@
   }
 
   // Background related
+  nextSlot = 0;
+  goingDown = true;
+
   function createBgElements() {
     window.setInterval(refreshElements, 250);
   }
 
   function refreshElements() {
-    const MAX_NUM_ELEMENTS = 10;
+    const MAX_NUM_ELEMENTS = 20;
     var elems = document.querySelectorAll('.animated-bg > .single.on');
     if (elems.length < MAX_NUM_ELEMENTS) createSingleElement(); // per interval
   }
@@ -149,11 +152,18 @@
 
   function generateCoords(screenWidth, screenHeight) {
     const CLEARANCE = 200; // distance travelled beyond the edge
+    const NUM_SLOTS = 5;
 
     // We want the points to travel along the left/right sides, avoiding
     // the text on the top/bottom of the page
-    var x = Math.random() < 0.5 ? 0 - CLEARANCE : screenWidth + CLEARANCE;
-    var y = Math.random() * screenHeight;
+    var x = goingDown ? 0 - CLEARANCE : screenWidth + CLEARANCE;
+    var y = screenHeight * nextSlot / NUM_SLOTS;
+
+    goingDown ? nextSlot++ : nextSlot--;
+    if(goingDown && nextSlot >= NUM_SLOTS) goingDown = !goingDown;
+    if(!goingDown && nextSlot <= 0) goingDown = !goingDown;
+
+    console.log(goingDown, nextSlot);
     
     return [x, y];
   }
