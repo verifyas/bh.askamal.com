@@ -6,10 +6,10 @@
     Still guessing where<br>
     it’s all going?
   </div>
-  <div id="el" class="flex flex-1 overflow-y-hidden justify-around relative" style="transition-duration: .3s; transition-timing-function: ease-out;">
-    <img src="/images/1.png" draggable="false" class="select-none max-h-full pointer-events-none">
-    <img src="/images/2.png" draggable="false" class="select-none max-h-full pointer-events-none">
-    <img src="/images/1.png" draggable="false" class="select-none max-h-full pointer-events-none">
+  <div id="el" class="flex flex-1 overflow-y-hidden justify-around relative items-center" style="transition-duration: .3s; transition-timing-function: ease-out;">
+    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full">
+    <img src="/images/2.png" draggable="false" class="select-none pointer-events-none max-h-full">
+    <img src="/images/1.png" draggable="false" class="select-none pointer-events-none max-h-full">
   </div>
   <div class="text-2xl text-center text-white font-bold my-2">
     Amal magically breaks <br>
@@ -48,7 +48,8 @@
   }
 
   function moveHandler(ev) {
-    el.style.left = offsetX + (ev.clientX - initialX) + 'px';
+    var newOffset = offsetX + (ev.clientX - initialX);
+    el.style.transform = `translateX(${newOffset}px)`;
   }
 
   function upHandler(ev) {
@@ -66,18 +67,18 @@
 
   function updateScreenWidth() {
     screenWidth = document.body.clientWidth;
-    el.style.width = `${numScreens * screenWidth * widthRatio}px`;
+    el.style.width = `${numScreens * screenWidth * widthFactor}px`;
     updateOffset();
   }
 
   function updateOffset() {
-    // When widthRatio < 1, we need to add an offset to center
+    // When widthFactor < 1, we need to add an offset to center
     // the image presently in focus
-    var offsetFromEdge = screenWidth * (1 - widthRatio) / 2;
+    var offsetFromEdge = screenWidth * (1 - widthFactor) / 2;
 
     // Update offset
-    offsetX = -widthRatio * curScreen * screenWidth + offsetFromEdge;
-    el.style.left = `${offsetX}px`;
+    offsetX = -widthFactor * curScreen * screenWidth + offsetFromEdge;
+    el.style.transform = `translateX(${offsetX}px)`;
   }
 
   // Utility functions
