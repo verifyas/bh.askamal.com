@@ -68,21 +68,22 @@
   height: 100%;
   position: absolute;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .animated-bg > .single {
   position: absolute;
   width: 50px;
   height: 50px;
-  left: calc(50vw - 50px);
-  top: calc(50vh - 50px);
+  left: 50%;
+  top: 50%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  background-image: url("https://img.icons8.com/wired/64/000000/hamburger.png");
+  // background-image: url(/images/bg-hand.svg);
   
   &.on {
-    transition: all 5s linear; //ease-in
-    transform: scale(2) rotate(360deg);
+    transition: all 5s linear; // ease-in;
+    transform: rotate(360deg);
   }
 }

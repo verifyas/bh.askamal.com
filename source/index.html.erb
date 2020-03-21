@@ -109,15 +109,19 @@
   function refreshElements() {
     const MAX_NUM_ELEMENTS = 10;
     var elems = document.querySelectorAll('.animated-bg > .single.on');
-    // var elems = document.querySelectorAll('.animated-bg > .single:not(.on)');
-    if (elems.length > MAX_NUM_ELEMENTS) { return }
-
-    for(var i = 0; i < MAX_NUM_ELEMENTS - elems.length; i++) {
-      createSingleElement();
-    }
+    if (elems.length < MAX_NUM_ELEMENTS) createSingleElement(); // per interval
   }
 
   function createSingleElement() {
+    const IMAGES = [
+      '/images/bg-hand.svg',
+      '/images/bg-home.svg',
+      '/images/bg-insurance.svg',
+      '/images/bg-shopping.svg',
+      '/images/bg-eat.svg',
+    ];
+    const imageIndex = Math.floor(Math.random() * IMAGES.length);
+
     const root = document.querySelector('.animated-bg');
     const elem = document.createElement('div');
     root.appendChild(elem);
@@ -132,39 +136,24 @@
     const point = Math.round(Math.random() * circumference);
     
     // transform to that zpoint, and turn on the animation
-    var result = pointToCoords(point, elemWidth, elemHeight);
-    elem.style.left = result[0] + 'px';
-    elem.style.top = result[1] + 'px';
+    var coords = generateCoords(elemWidth, elemHeight);
+    elem.style.left = coords[0] + 'px';
+    elem.style.top = coords[1] + 'px';
+    elem.style.transform = ` scale(${Math.round(Math.random() * 3)}) rotate(270deg)`;
     // elem.style.transform += ` translate(${result[0]}px, ${result[1]}px)`;
 
-    elem.style.transitionDelay = Math.random() + 's';
+    elem.style.backgroundImage = `url(${IMAGES[imageIndex]})`;
+    elem.style.transitionDelay = 3 * Math.random() + 's';
     elem.classList.add('on');
   }
 
-  function pointToCoords(point, screenWidth, screenHeight) {
-    /**
-     * Converts a point on a rectangle to x, y:
-     *
-     *     ------
-     *     |    |
-     *     |    |
-     *     ---*--
-     *
-     */
-    var x, y;
-    if(point <= screenWidth) {
-      x = point;
-      y = 0;
-    } else if(point > screenWidth && point <= screenWidth + screenHeight) {
-      x = screenWidth;
-      y = point - screenWidth;
-    } else if(point > screenWidth + screenHeight &&  point <= 2 * screenWidth + screenHeight) {
-      x = 2 * screenWidth + screenHeight - point;
-      y = screenHeight;
-    } else {
-      x = 0;
-      y = 2 * screenWidth + 2 * screenHeight - point;
-    }
+  function generateCoords(screenWidth, screenHeight) {
+    const CLEARANCE = 200; // distance travelled beyond the edge
+
+    // We want the points to travel along the left/right sides, avoiding
+    // the text on the top/bottom of the page
+    var x = Math.random() < 0.5 ? 0 - CLEARANCE : screenWidth + CLEARANCE;
+    var y = Math.random() * screenHeight;
     
     return [x, y];
   }
