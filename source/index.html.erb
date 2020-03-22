@@ -30,21 +30,21 @@
         Let's get your details, shall we?
       </div>
 
-      <input type="text" placeholder="Elon Misk" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-4">
+      <input type="text" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3">
 
-      <input type="email" placeholder="elon@junaidperfumes.com" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-4">
+      <input type="email" placeholder="elon@junaidperfumes.com" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3">
     </div>
 
     <div>
-      <div class="text-lg pl-6 pr-6" style="color: #353550; font-family: Open Sans, Arial;">
+      <div class="texttext-lg pl-6 pr-6" style="color: #353550; font-family: Open Sans, Arial;">
         Which banks do you use in Bahrain?
         (pick as many as you like)
       </div>
 
-      <input type="text" placeholder="Select your bank(s)" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-4">
+      <input type="text" placeholder="Select your bank(s)" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-4">
     </div>
 
-    <input type="button" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-xl mt-6" style="color: #EFEFF5; font-family: 'Montserrat', sans-serif; background: #3634E3; font-weight: 800;" value="request access">
+    <input type="button" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-xl" style="color: #EFEFF5; font-family: 'Montserrat', sans-serif; background: #3634E3; font-weight: 800;" value="request access">
 
     <div>
       <img src="/images/logo-gray.svg" title="Amal Logo" class="block m-auto">
@@ -56,12 +56,11 @@
 </div>
 
 <style>
-input[type=text], input[type=email] {
+input.text {
   background: #EFEFF5;
 }
 
-input[type=text]::placeholder,
-input[type=email]::placeholder {
+input.text::placeholder {
   color: #79799E;
 }
 
@@ -69,8 +68,11 @@ input[type=email]::placeholder {
   background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
   box-shadow: 0px -2px 10px rgba(12, 11, 127, 0.3);
   border-radius: 30px 30px 0px 0px;
+}
+
+#sheet > div {
   height: 600px;
-  max-height: 100vh;
+  max-height: 90vh;
   overflow-y: auto; /* only if necessary, on short screens */
 }
 
