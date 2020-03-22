@@ -2,6 +2,7 @@
 
 ## TODO
 
+- Change the text on screen swipe
 - Fade icons out on switch (use an "off" class and add it on switch)
 - Use a radial gradient in the background for enhanced visual effect
 
