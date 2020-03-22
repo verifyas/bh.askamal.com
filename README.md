@@ -1,5 +1,10 @@
 # 🚀 Middleman Tailwind CSS and Webpack Starter Project 🚀
 
+## TODO
+
+- Fade icons out on switch (use an "off" class and add it on switch)
+- Use a radial gradient in the background for enhanced visual effect
+
 ### A Git repo of a Middleman 4 project set up with Tailwind CSS and Webpack preconfigured. Which is great, because Webpack is kind of a bitch.
 
 The webpack setup has all CSS being tree shaken (removing all unused CSS so that Tailwind isn't 400kb.) as well as minified. All Javascript is transpiled via Babel and of course minified. This is all done outside of Middleman's asset pipeline, so you probably don't want to mess around with that too too much.

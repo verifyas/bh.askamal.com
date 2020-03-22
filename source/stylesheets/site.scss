@@ -83,7 +83,17 @@
   // background-image: url(/images/bg-hand.svg);
   
   &.on {
-    transition: all 5s linear; // ease-in;
+    transition: all 5s linear -3s; // ease-in;
     transform: rotate(540deg);
+  }
+
+  &:nth-child(2).on{
+    transition-duration: 4s;
+  }
+  &:nth-child(3).on{
+    transition-duration: 5s;
+  }
+  &:nth-child(4).on{
+    transition-duration: 3s;
   }
 }

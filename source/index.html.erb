@@ -102,25 +102,37 @@
   }
 
   // Background related
-  function createBgElements() {
-    window.setInterval(refreshElements, 250);
-  }
-
-  function refreshElements() {
-    const MAX_NUM_ELEMENTS = 20;
-    var elems = document.querySelectorAll('.animated-bg > .single.on');
-    if (elems.length < MAX_NUM_ELEMENTS) createSingleElement(); // per interval
-  }
-
-  function createSingleElement() {
-    const IMAGES = [
+  const IMAGES = [
+    [
       '/images/bg-hand.svg',
       '/images/bg-home.svg',
       '/images/bg-insurance.svg',
       '/images/bg-shopping.svg',
       '/images/bg-eat.svg',
-    ];
-    const imageIndex = Math.floor(Math.random() * IMAGES.length);
+    ],
+    [
+      '/images/bg-hsbc.svg',
+      '/images/bg-bisb.svg',
+      '/images/bg-kfh.svg',
+    ],
+    [
+      ''
+    ]
+  ];
+
+  function createBgElements() {
+    window.setInterval(createSingleElement, 250);
+  }
+
+  function refreshElements() {
+    const MAX_NUM_ELEMENTS = 10;
+    var elems = document.querySelectorAll('.animated-bg > .single.on');
+    if (elems.length < MAX_NUM_ELEMENTS) createSingleElement(); // per interval
+  }
+
+  function createSingleElement() {
+    const imageSet = IMAGES[curScreen];
+    const imageIndex = Math.floor(Math.random() * imageSet.length);
 
     const root = document.querySelector('.animated-bg');
     const elem = document.createElement('div');
@@ -142,7 +154,7 @@
     elem.style.transform = ` scale(${Math.round(Math.random() * 3)}) rotate(270deg)`;
     // elem.style.transform += ` translate(${result[0]}px, ${result[1]}px)`;
 
-    elem.style.backgroundImage = `url(${IMAGES[imageIndex]})`;
+    elem.style.backgroundImage = `url(${imageSet[imageIndex]})`;
     elem.style.transitionDelay = 3 * Math.random() + 's';
     elem.classList.add('on');
   }
