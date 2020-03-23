@@ -112,8 +112,9 @@
         <div class="copied">
           Copied!
         </div>
-        <input id="user-link" type="text" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" readonly value="amal.is/🤗/yazin" style="font-family: Courier New; color: #504C79;"> 
-        <div class="copy-icon flex-0 pr-4" data-clipboard-target="#user-link" onclick="return showCopiedNotice();">
+        <div id="user-link" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" style="font-family: Courier New; color: #504C79;"><span style='position: absolute; color: transparent;'>https://</span>amal.is/🤗/yazin</div> 
+
+        <div class="copy-icon flex-0 pr-4" data-clipboard-target="#user-link">
           <img src="/images/copy-icon.svg" style="width:20px;">
         </div>
       </div>
@@ -156,7 +157,8 @@
       placeholder: "Select your bank(s)"
     });
     new CountUp('counter', 54, { duration: 6 }).start();
-    new ClipboardJS('.copy-icon');
+    const clipboard = new ClipboardJS('.copy-icon');
+    clipboard.on('success', showCopiedNotice);
   });
 
   function showCopiedNotice() {
