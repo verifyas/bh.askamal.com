@@ -1,21 +1,8 @@
 name: 'Amal | Coming soon'
-description: 'An opinionated and ready-to-use Middleman 4 template with TailwindCSS and Webpack Preconfigured'
+description: "Where's your money going? Amal, coming soon to Bahrain!"
 host: 'https://bh.askamal.com'
 keywords: 'personal finance, bahrain, track spending, track expenses'
 thumbnail: 'banner.jpg'
 favicon: '_favicon.svg'
 base_color: '#FBC547'
 license: 'MIT'
-geocoding:
-  place: 'Salmon Arm, Canada'
-  latitude: '50.701777'
-  longitude: '-119.281544'
-  region: 'BC-CA'
-author:
-  name: 'Rich Smith'
-  email: 'iam@richjdsmith.ca'
-  phone: '+1-250-833-6512'
-  website: 'https://nobullco.com'
-  # Available social media tags: bitbucket dribbble facebook github gitlab instagram linkedin medium twitter
-  github: 'richjdsmith'
-  twitter: 'richjdsmith'

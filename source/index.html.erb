@@ -85,7 +85,7 @@
       <div class="h-full flex-1 pl-4 text-lg" style="color: #79799e">
         <div class="pl-3">
           Yazin, there are
-          <div class="num" style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3rem; color: #3634e3;line-height: 1.1;letter-spacing:2px;">1,234</div>
+          <div id="counter" style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3rem; color: #3634e3;line-height: 1.1;letter-spacing:2px;">1,234</div>
           ahead of you in line
         </div>
         <button class="rounded-full mt-2 pl-4 pr-4 pt-1 pb-1" style="background: #EBEBF3; color: #626189">
@@ -151,7 +151,13 @@
     new SlimSelect({
       select: '#bankSelect',
       placeholder: "Select your bank(s)"
-    })
+    });
+    let demo = new CountUp('counter', 1234, { duration: 5 });
+    if (!demo.error) {
+      demo.start();
+    } else {
+      console.error(demo.error);
+    }
   });
 
   function downHandler(ev) {
