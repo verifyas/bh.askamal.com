@@ -109,8 +109,11 @@
       </div>
 
       <div class="rounded-full flex flex-row mt-2 items-center" style="background: #EBEBF3;">
-        <input type="text" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" readonly value="amal.is/🤗/yazin" style="font-family: Courier New; color: #504C79;"> 
-        <div class="flex-0 pr-4">
+        <div class="copied">
+          Copied!
+        </div>
+        <input id="user-link" type="text" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" readonly value="amal.is/🤗/yazin" style="font-family: Courier New; color: #504C79;"> 
+        <div class="copy-icon flex-0 pr-4" data-clipboard-target="#user-link" onclick="return showCopiedNotice();">
           <img src="/images/copy-icon.svg" style="width:20px;">
         </div>
       </div>
@@ -152,13 +155,15 @@
       select: '#bankSelect',
       placeholder: "Select your bank(s)"
     });
-    let demo = new CountUp('counter', 54, { duration: 6 });
-    if (!demo.error) {
-      demo.start();
-    } else {
-      console.error(demo.error);
-    }
+    new CountUp('counter', 54, { duration: 6 }).start();
+    new ClipboardJS('.copy-icon');
   });
+
+  function showCopiedNotice() {
+    const elem = document.getElementsByClassName('copied')[0];
+    elem.classList.add('on');
+    setTimeout(() => elem.classList.remove('on'), 2000);
+  }
 
   function downHandler(ev) {
     initialX = ev.clientX;
