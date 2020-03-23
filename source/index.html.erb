@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="sheet sheet-first absolute bottom-0 z-10 w-full" style="display: none;">
+<div class="sheet sheet-first absolute bottom-0 z-10 w-full">
   <div class="p-4 h-full flex flex-col justify-around">
     <div>
       <div class="text-lg pl-6 pr-6" style="color: #353550;">
@@ -79,7 +79,7 @@
   </div>
 </div>
 
-<div class="sheet absolute bottom-0 z-10 w-full">
+<div class="sheet absolute bottom-0 z-10 w-full" style="display: none;">
   <div class="h-full flex flex-col pt-3">
     <div class="flex flex-1 flex-row h-full">
       <div class="h-full flex-1 pl-4 text-lg relative" style="color: #79799e">
@@ -112,7 +112,7 @@
         <div class="copied">
           Copied!
         </div>
-        <div id="user-link" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" style="font-family: Courier New; color: #504C79;"><span style='position: absolute; color: transparent;'>https://</span>amal.is/🤗/yazin</div> 
+        <div id="user-link" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" style="font-family: Courier New; color: #504C79;"><span style='position: absolute; opacity: 0;'>https://</span>amal.is/🤗/yazin</div> 
 
         <div class="copy-icon flex-0 pr-4" data-clipboard-target="#user-link">
           <img src="/images/copy-icon.svg" style="width:20px;">
@@ -151,7 +151,7 @@
     updateHeights();
     createBgElements();
 
-    window.setTimeout(() => document.querySelectorAll('.sheet')[1].classList.add('on'), 1000);
+    window.setTimeout(() => document.querySelectorAll('.sheet')[0].classList.add('on'), 1000);
     new SlimSelect({
       select: '#bankSelect',
       placeholder: "Select your bank(s)"

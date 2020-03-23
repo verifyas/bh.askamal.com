@@ -142,7 +142,11 @@ input.text::placeholder {
 #bankSelect {
   & + .ss-main {
     font-size: 1rem;
-    
+    .ss-search > input {
+      border-radius: 99px;
+      border: 0;
+      outline: none;
+    }
     .ss-multi-selected {
       border-radius: 99px;
       background: #EFEFF5;
@@ -162,12 +166,16 @@ input.text::placeholder {
       background: #7181F4;
       white-space: nowrap;
     }
-    .ss-disabled {
+    .ss-values > .ss-disabled {
       font-size: 1.125rem;
       color: #B0B0C6;
     }
     .ss-value-delete {
       padding-left: .5rem;
+    }
+    .ss-option.ss-option-selected {
+      background: #acb5f2;
+      color: #3545b5;
     }
     .ss-add {
       align-items: center;
