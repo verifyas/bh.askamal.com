@@ -18,7 +18,7 @@
     Amal magically breaks <br>
     down your spending
   </div>
-  <div class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;">
+  <div class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" onclick="showSheet()">
     get early access
   </div>
 </div>
@@ -151,7 +151,6 @@
     updateHeights();
     createBgElements();
 
-    window.setTimeout(() => document.querySelectorAll('.sheet')[0].classList.add('on'), 1000);
     new SlimSelect({
       select: '#bankSelect',
       placeholder: "Select your bank(s)"
@@ -160,6 +159,10 @@
     const clipboard = new ClipboardJS('.copy-icon');
     clipboard.on('success', showCopiedNotice);
   });
+
+  function showSheet() {
+    document.querySelectorAll('.sheet')[0].classList.add('on');
+  }
 
   function showCopiedNotice() {
     const elem = document.getElementsByClassName('copied')[0];
