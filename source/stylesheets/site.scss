@@ -134,16 +134,18 @@ input.text::placeholder {
 #bankSelect {
   & + .ss-main {
     font-size: 1rem;
-
+    
     .ss-multi-selected {
       border-radius: 99px;
       background: #EFEFF5;
       padding: .5rem 1rem;
       border: 0;
       overflow-x: auto;
+      min-height: calc(38px + 1rem); // .5 * 2 padding
     }
     .ss-values {
       flex-wrap: nowrap;
+      padding-right: 50px; // because we overlay "+"
     }
     .ss-value {
       font-size: 1rem;
@@ -166,7 +168,7 @@ input.text::placeholder {
       transform: translate(-16px, -8px);
       width: 45px;
       background: radial-gradient(circle at right, #efeff5 83%, transparent 83%);
-      height: 46px;
+      height: 54px;
       margin: initial;
       border-radius: 0 99px 99px 0;
 
