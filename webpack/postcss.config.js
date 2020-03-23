@@ -16,17 +16,17 @@ const PROD_PLUGINS = [
   require('postcss-import')(),
   tailwindcss('./tailwind.config.js'),
   require('autoprefixer')(),
-  require('postcss-purgecss')({
-    content: [
-      __dirname + '/../source/**/*.html',
-      __dirname + '/../source/**/*.erb'
-    ],
-    extractors: [{
-      extractor: TailwindExtractor,
-      extensions: ['html', 'js', 'erb', 'html.erb']
-    }]
-  }),
-  require('cssnano')()
+  // require('postcss-purgecss')({
+  //   content: [
+  //     __dirname + '/../source/**/*.html',
+  //     __dirname + '/../source/**/*.erb'
+  //   ],
+  //   extractors: [{
+  //     extractor: TailwindExtractor,
+  //     extensions: ['html', 'js', 'erb', 'html.erb']
+  //   }]
+  // }),
+  // require('cssnano')()
 ]
 
 

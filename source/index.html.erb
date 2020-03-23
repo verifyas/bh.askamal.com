@@ -23,11 +23,11 @@
   </div>
 </div>
 
-<div id="sheet" class="absolute bottom-0 z-10 w-full">
+<div class="sheet absolute bottom-0 z-10 w-full">
   <div class="p-4 h-full flex flex-col justify-around">
     <div>
       <div class="text-lg pl-6 pr-6" style="color: #353550; font-family: Open Sans, Arial;">
-        Let's get your details, shall we?
+        Let's get your details, shall we.
       </div>
 
       <input type="text" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3">
@@ -58,7 +58,7 @@
     <div>
       <img src="/images/logo-gray.svg" title="Amal Logo" class="block m-auto">
       <div class="text-sm text-center mt-3" style="color: #B3B3CB;">
-        Amal AI is authorized as a participant in the Fintech Regulatory Sandbox in the Kingdom of Bahrain, operating as a “Sandbox Ancillary Service Provider (AISP)”
+        Amal AI is an authorized participant in the Fintech Regulatory Sandbox in the Kingdom of Bahrain, operating as a Sandbox Ancillary Service Provider
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@
     updateHeights();
     createBgElements();
 
-    window.setTimeout(() => sheet.classList.add('on'), 1000);
+    window.setTimeout(() => document.querySelector('.sheet').classList.add('on'), 1000);
     new SlimSelect({
       select: '#bankSelect',
       placeholder: "Select your bank(s)"
