@@ -63,6 +63,10 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:800|Open+Sans&display=swap');
 
+body {
+  font-family: Open Sans, Arial;
+}
+
 input.text {
   background: #EFEFF5;
 }
@@ -85,9 +89,13 @@ input.text::placeholder {
 }
 
 .sheet > div {
-  height: 600px;
+  min-height: 450px; // the shorter screen
   max-height: 90vh;
   overflow-y: auto; /* only if necessary, on short screens */
+}
+
+.sheet.sheet-first > div {
+  min-height: 600px;
 }
 
 #el, #el > img {

@@ -23,10 +23,10 @@
   </div>
 </div>
 
-<div class="sheet absolute bottom-0 z-10 w-full">
+<div class="sheet sheet-first absolute bottom-0 z-10 w-full" style="display: none;">
   <div class="p-4 h-full flex flex-col justify-around">
     <div>
-      <div class="text-lg pl-6 pr-6" style="color: #353550; font-family: Open Sans, Arial;">
+      <div class="text-lg pl-6 pr-6" style="color: #353550;">
         Let's get your details, shall we.
       </div>
 
@@ -79,6 +79,49 @@
   </div>
 </div>
 
+<div class="sheet absolute bottom-0 z-10 w-full">
+  <div class="h-full flex flex-col pt-3">
+    <div class="flex flex-1 flex-row h-full">
+      <div class="stats h-full flex-1 pl-8 text-lg" style="color: #79799e">
+        <div class="pl-3">
+          Yazin, there are
+          <div class="num" style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3rem; color: #3634e3;line-height: 1.1;letter-spacing:2px;">1,234</div>
+          ahead of you in line
+        </div>
+        <button class="rounded-full mt-2 pl-4 pr-4 pt-1 pb-1" style="background: #EBEBF3; color: #626189">
+          <svg class="inline-block relative mr-1" style="top: -3px;" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.325 2.62102C17.9168 2.5838 17.5557 2.88458 17.5185 3.29278L17.4202 4.37153C15.7517 1.75136 12.8556 0 9.49976 0C5.88969 0 2.70823 2.06041 1.12892 5.15283C0.942478 5.51788 1.08728 5.96494 1.45233 6.15138C1.81745 6.33782 2.26444 6.19306 2.45088 5.82797C3.78746 3.21085 6.47149 1.48439 9.49976 1.48439C12.2599 1.48439 14.7507 2.92169 16.1778 5.17339L15.1195 4.41758C14.7859 4.17937 14.3224 4.25663 14.0842 4.59018C13.846 4.92376 13.9232 5.38726 14.2568 5.6255L17.4658 7.91744C17.9362 8.25272 18.5849 7.94579 18.6363 7.38087L18.9967 3.42757C19.034 3.01932 18.7332 2.65824 18.325 2.62102Z" fill="#626189"/>
+            <path d="M17.5475 12.8488C17.1824 12.6624 16.7354 12.8072 16.5489 13.1722C15.2123 15.7894 12.5283 17.5158 9.50005 17.5158C6.73994 17.5158 4.24906 16.0785 2.82204 13.8268L3.8803 14.5826C4.21388 14.8208 4.67738 14.7436 4.91562 14.41C5.15383 14.0764 5.07657 13.6129 4.74303 13.3747L1.53396 11.0828C1.06939 10.7509 0.41544 11.0486 0.363486 11.6193L0.00311379 15.5726C-0.0341073 15.9808 0.266667 16.3419 0.674837 16.3791C1.08356 16.4163 1.44416 16.1152 1.48134 15.7074L1.57968 14.6286C3.24806 17.2488 6.14425 19.0002 9.50005 19.0002C13.1101 19.0002 16.2916 16.9398 17.8709 13.8474C18.0573 13.4823 17.9125 13.0353 17.5475 12.8488Z" fill="#626189"/>
+            </svg>
+
+        
+        
+          refresh
+        </button>
+      </div>
+      <div class="bg-contain bg-no-repeat" style="background-image:url(/images/amal.svg); width: 200px; max-width: 40vw; background-position: center bottom;"></div>
+    </div>
+
+    <div class="h-full pl-8 pr-8 pt-2 pb-4" style="border-top: 1px solid #d4d3e3;">
+      <div class="rounded-full pt-1 pl-4 pr-4 pb-1 font-bold mb-2 inline-block" style="color: #1210a2; background: #a3adf5;">HOT TIP</div>
+      <div class="text-lg pl-4 pr-2" style="color: #79799e;">
+        <strong>Jump 50 spots ✨</strong> when someone signs up using your link:
+      </div>
+
+      <div class="rounded-full flex flex-row mt-2" style="background: #EBEBF3;">
+        <input type="text" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" readonly value="amal.is/🤗/yazin" style="font-family: Courier New; color: #504C79;"> 
+        <img src="/images/copy-icon.svg" class="p-2 pr-4" style="width:40px;">
+      </div>
+
+      <div class="text-lg pl-4 pr-4 mt-4" style="color: #79799e;">Click to share a message on:</div>
+      <div class="flex flex-row mt-1 justify-between">
+        <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 border-green-500 text-green-900" style="max-width: 40vw;">WhatsApp</a>
+        <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 border-blue-500 text-blue-900" style="max-width: 40vw;">Twitter</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   var initialX, offsetX, curScreen = 0;
   var screenWidth;
@@ -102,7 +145,7 @@
     updateHeights();
     createBgElements();
 
-    window.setTimeout(() => document.querySelector('.sheet').classList.add('on'), 1000);
+    window.setTimeout(() => document.querySelectorAll('.sheet')[1].classList.add('on'), 1000);
     new SlimSelect({
       select: '#bankSelect',
       placeholder: "Select your bank(s)"
