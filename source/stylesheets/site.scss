@@ -203,3 +203,17 @@ input.text::placeholder {
     }
   }
 }
+
+.line {
+  animation: growline 3s steps(22) 1s forwards;
+}
+
+@keyframes growline {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
