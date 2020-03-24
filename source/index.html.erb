@@ -5,7 +5,7 @@
 <div class="animated-bg"></div>
 
 <div class="flex-col w-full h-full justify-between bg-teal-300 flex overflow-x-hidden" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
-  <div class="text-3xl text-white text-center mx-4 my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.05;">
+  <div id='topHeading' class="text-3xl text-white text-center mx-4 my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.05;">
     Still guessing where<br>
     it’s all going?
   </div>
@@ -79,7 +79,7 @@
   </div>
 </div>
 
-<div class="sheet absolute bottom-0 z-10 w-full" style="display: none;">
+<div class="sheet absolute bottom-0 z-10 w-full">
   <div class="h-full flex flex-col pt-3">
     <div class="flex flex-1 flex-row h-full">
       <div class="h-full flex-1 pl-4 text-lg relative" style="color: #79799e">
@@ -134,13 +134,22 @@
   const numScreens = 3, widthFactor = .65, heightFactor = .9;
 
   function loadScreen(nextScreen) {
-    // Uses the globals numScreens, curScreen, offsetX, el
+    // Uses the globals numScreens, curScreen, offsetX
     prevScreen = curScreen
     curScreen = clamp(0, numScreens - 1)(nextScreen);
     updateOffset();
     updateHeights();
 
+    if(typeof topHeading != "undefined") hideTopHeading();
     if(prevScreen != curScreen) updateHeadings();
+  }
+
+  function hideTopHeading() {
+    topHeading.classList.add('off');
+    topHeading.addEventListener('transitionend', function() {
+      // remove after done
+      topHeading.parentNode.removeChild(topHeading);
+    });
   }
 
   // DOM event handlers
