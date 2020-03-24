@@ -98,7 +98,7 @@ input.text::placeholder {
   min-height: 600px;
 }
 
-#el, #el > img {
+#slides, #slides > img {
   transition-property: transform; 
   transition-duration: .3s; 
   transition-timing-function: ease-out;

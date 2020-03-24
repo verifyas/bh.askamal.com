@@ -9,12 +9,12 @@
     Still guessing where<br>
     it’s all going?
   </div>
-  <div id="el" class="flex flex-1 overflow-y-hidden justify-around relative items-center" >
+  <div id="slides" class="flex flex-1 overflow-y-hidden justify-around relative items-center" >
     <img src="/images/1.svg" draggable="false" class="select-none pointer-events-none max-h-full">
     <img src="/images/2.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
     <img src="/images/3.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
   </div>
-  <div class="text-2xl text-center text-white font-bold my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.1; color: #ECEEF8;">
+  <div id='imageHeading' class="text-2xl text-center text-white font-bold my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.1; color: #ECEEF8;">
     Amal magically breaks <br>
     down your spending
   </div>
@@ -135,17 +135,20 @@
 
   function loadScreen(nextScreen) {
     // Uses the globals numScreens, curScreen, offsetX, el
+    prevScreen = curScreen
     curScreen = clamp(0, numScreens - 1)(nextScreen);
     updateOffset();
     updateHeights();
+
+    if(prevScreen != curScreen) updateHeadings();
   }
 
   // DOM event handlers
   document.addEventListener('DOMContentLoaded', function(e) {
     // Register event handlers
-    el.onpointerdown = downHandler;
-    el.onpointercancel = upHandler;
-    el.onpointerup = upHandler;
+    slides.onpointerdown = downHandler;
+    slides.onpointercancel = upHandler;
+    slides.onpointerup = upHandler;
 
     updateScreenWidth();
     updateHeights();
@@ -172,31 +175,31 @@
 
   function downHandler(ev) {
     initialX = ev.clientX;
-    el.style.transitionDuration = '0s';
-    el.onpointermove = moveHandler;
+    slides.style.transitionDuration = '0s';
+    slides.onpointermove = moveHandler;
   }
 
   function moveHandler(ev) {
     var newOffset = offsetX + (ev.clientX - initialX);
-    el.style.transform = `translateX(${newOffset}px)`;
+    slides.style.transform = `translateX(${newOffset}px)`;
   }
 
   function upHandler(ev) {
     var offset = ev.clientX - initialX;
     var nextScreen;
 
-    el.style.transitionDuration = '0.3s';
+    slides.style.transitionDuration = '0.3s';
     loadScreen(offset > 0 ? curScreen - 1 : curScreen + 1);
 
     // release move binding
-    el.onpointermove = null;
+    slides.onpointermove = null;
   }
 
   window.addEventListener('resize', updateScreenWidth);
 
   function updateScreenWidth() {
     screenWidth = document.body.clientWidth;
-    el.style.width = `${numScreens * screenWidth * widthFactor}px`;
+    slides.style.width = `${numScreens * screenWidth * widthFactor}px`;
     updateOffset();
   }
 
@@ -207,13 +210,22 @@
 
     // Update offset
     offsetX = -widthFactor * curScreen * screenWidth + offsetFromEdge;
-    el.style.transform = `translateX(${offsetX}px)`;
+    slides.style.transform = `translateX(${offsetX}px)`;
   }
 
   function updateHeights() {
-    document.querySelectorAll('#el > img').forEach(function(img, index) {
+    document.querySelectorAll('#slides > img').forEach(function(img, index) {
       var scale = index == curScreen ? 1 : heightFactor;
       img.style.transform = `scale(${scale})`;
+    });
+  }
+
+  function updateHeadings() {
+    imageHeading.classList.add('off');
+    imageHeading.addEventListener('transitionend', function() {
+      // update text
+      imageHeading.innerHTML = HEADINGS[curScreen];
+      imageHeading.classList.remove('off');
     });
   }
 
@@ -235,6 +247,11 @@
       ''
     ]
   ];
+  const HEADINGS = [
+    'Amal magically breaks down your spending',
+    'All your accounts, all on the same page',
+    'Hidden fees,<br>have nowhere left to hide',
+  ]
 
   function createBgElements() {
     window.setInterval(createSingleElement, 250);
