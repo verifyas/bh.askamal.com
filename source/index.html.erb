@@ -18,7 +18,7 @@
     Amal magically breaks <br>
     down your spending
   </div>
-  <div class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" onclick="showSheet()">
+  <div class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" onclick="showRegistrationSheet()">
     get early access
   </div>
 </div>
@@ -68,7 +68,7 @@
       </select>
     </div>
 
-    <input type="button" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-xl" style="color: #EFEFF5; font-family: 'Montserrat', sans-serif; background: #3634E3; font-weight: 800;" value="request access">
+    <input type="button" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-xl" style="color: #EFEFF5; font-family: 'Montserrat', sans-serif; background: #3634E3; font-weight: 800;" value="request access" onclick="showResultSheet()">
 
     <div>
       <img src="/images/logo-gray.svg" title="Amal Logo" class="block m-auto">
@@ -172,8 +172,16 @@
     clipboard.on('success', showCopiedNotice);
   });
 
-  function showSheet() {
-    document.querySelectorAll('.sheet')[0].classList.add('on');
+  function showRegistrationSheet(index) {
+    document.querySelectorAll('.sheet')[index].classList.add('on');
+  }
+
+  function showResultSheet() {
+    const firstSheet = document.querySelectorAll('.sheet')[0];
+    firstSheet.classList.remove('on');
+    firstSheet.addEventListener('transitionend', function() {
+      document.querySelectorAll('.sheet')[0].classList.add('on');
+    });
   }
 
   function showCopiedNotice() {
