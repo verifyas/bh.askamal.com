@@ -109,11 +109,11 @@ input.text::placeholder {
 }
 
 #topHeading {
-  transform: translateY(0);
-  transition: transform .25s linear;
+  height: 60px;
+  transition: height .25s linear;
 
   &.off {
-    transform: translateY(-200px);
+    height: 0px;
   }
 }
 
