@@ -167,21 +167,31 @@
       select: '#bankSelect',
       placeholder: "Select your bank(s)"
     });
-    new CountUp('counter', 54, { duration: 6 }).start();
+    
     const clipboard = new ClipboardJS('.copy-icon');
     clipboard.on('success', showCopiedNotice);
   });
 
-  function showRegistrationSheet(index) {
-    document.querySelectorAll('.sheet')[index].classList.add('on');
+  function showRegistrationSheet() {
+    document.querySelectorAll('.sheet')[0].classList.add('on');
   }
 
   function showResultSheet() {
-    const firstSheet = document.querySelectorAll('.sheet')[0];
-    firstSheet.classList.remove('on');
-    firstSheet.addEventListener('transitionend', function() {
-      document.querySelectorAll('.sheet')[0].classList.add('on');
+    const regSheet = document.querySelectorAll('.sheet')[0];
+    regSheet.classList.remove('on');
+    regSheet.addEventListener('transitionend', function() {
+      document.querySelectorAll('.sheet')[1].classList.add('on');
+      animateResultSheet();
     });
+  }
+
+  function animateResultSheet() {
+    new CountUp('counter', 54, { duration: 6 }).start();
+    
+    // To animate the line, recreate it https://css-tricks.com/restart-css-animation/
+    const oldCopy = document.querySelector('.line');
+    const newCopy = oldCopy.cloneNode(true);
+    oldCopy.parentNode.replaceChild(newCopy, oldCopy);
   }
 
   function showCopiedNotice() {
