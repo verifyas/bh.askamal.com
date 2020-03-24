@@ -221,9 +221,11 @@
   }
 
   function updateHeadings() {
+    console.log('updateHeadings()');
     imageHeading.classList.add('off');
     imageHeading.addEventListener('transitionend', function() {
       // update text
+      console.log('updated');
       imageHeading.innerHTML = HEADINGS[curScreen];
       imageHeading.classList.remove('off');
     });
@@ -248,9 +250,9 @@
     ]
   ];
   const HEADINGS = [
-    'Amal magically breaks down your spending',
-    'All your accounts, all on the same page',
-    'Hidden fees,<br>have nowhere left to hide',
+    'Amal magically breaks<br> down your spending',
+    'All your accounts,<br> all on the same page',
+    'Hidden fees,<br>nowhere left to hide',
   ]
 
   function createBgElements() {
