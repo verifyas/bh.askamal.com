@@ -113,7 +113,7 @@ input.text::placeholder {
   transition: transform .25s linear;
 
   &.off {
-    transform: translateY(-50vw);
+    transform: translateY(-200px);
   }
 }
 

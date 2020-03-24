@@ -248,11 +248,9 @@
   }
 
   function updateHeadings() {
-    console.log('updateHeadings()');
     imageHeading.classList.add('off');
     imageHeading.addEventListener('transitionend', function() {
       // update text
-      console.log('updated');
       imageHeading.innerHTML = HEADINGS[curScreen];
       imageHeading.classList.remove('off');
     });
