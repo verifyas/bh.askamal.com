@@ -30,7 +30,7 @@
         Let's get your details, shall we.
       </div>
 
-      <input type="text" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required>
+      <input type="text" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required autofocus autocorrect="off" spellcheck="false">
 
       <input type="email" placeholder="elon@junaidperfumes.com" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required>
     </div>
@@ -154,7 +154,11 @@
   }
 
   // DOM event handlers
-  document.addEventListener('DOMContentLoaded', function(e) {
+  document.addEventListener('DOMContentLoaded', onLoad);
+
+  function onLoad(_) {
+    trackReferrer();
+
     // Register event handlers
     slides.onpointerdown = downHandler;
     slides.onpointercancel = upHandler;
@@ -164,6 +168,7 @@
     updateHeights();
     createBgElements();
 
+    // Initialize dynamic form elements
     window.slimSelect = new SlimSelect({
       select: '#bankSelect',
       placeholder: "Select your bank(s)",
@@ -173,7 +178,16 @@
     
     const clipboard = new ClipboardJS('.copy-icon');
     clipboard.on('success', showCopiedNotice);
-  });
+  }
+
+  function trackReferrer() {
+    const referrer = location.hash.slice(1);
+    location.hash = '';
+    if(referrer.length == 0) return;
+
+    // save to persistent storage
+    window.localStorage.setItem('referrer', referrer);
+  }
 
   function showRegistrationSheet() {
     const regSheet = document.querySelectorAll('.sheet')[0];
@@ -273,9 +287,13 @@
       '/images/bg-hsbc.svg',
       '/images/bg-bisb.svg',
       '/images/bg-kfh.svg',
+      '/images/bg-bbk.svg',
+      '/images/bg-ithmaar.svg',
     ],
     [
-      ''
+      '/images/fee-1.svg',
+      '/images/fee-2.svg',
+      '/images/fee-3.svg',
     ]
   ];
   const HEADINGS = [
@@ -352,6 +370,10 @@
 
     alert('valid');
     return false;
+  }
+
+  function _submitForm() {
+
   }
 
   const clamp = (min, max) => (value) =>
