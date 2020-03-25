@@ -98,7 +98,7 @@ input.text::placeholder {
   overflow-y: auto; /* only if necessary, on short screens */
 }
 
-.sheet.sheet-first > div {
+.sheet.sheet-first > form {
   min-height: 600px;
 }
 
@@ -178,6 +178,9 @@ input.text::placeholder {
       border: 0;
       overflow-x: auto;
       min-height: calc(38px + 1rem); // .5 * 2 padding
+    }
+    &.error .ss-multi-selected {
+      border: 1px solid red;
     }
     .ss-values {
       flex-wrap: nowrap;
