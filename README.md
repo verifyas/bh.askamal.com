@@ -5,6 +5,8 @@
 - Fade icons out on switch (use an "off" class and add it on switch)
 - Use a radial gradient in the background for enhanced visual effect
 - Optimize the BG animations
+- Fix scrollback bug on Chrome
+- Fix Share on WhatsApp / Twitter buttons
 
 ### A Git repo of a Middleman 4 project set up with Tailwind CSS and Webpack preconfigured. Which is great, because Webpack is kind of a bitch.
 

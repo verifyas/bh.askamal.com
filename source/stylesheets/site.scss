@@ -240,6 +240,26 @@ input.text::placeholder {
   }
 }
 
+#btnRegister:disabled {
+  background: #999 !important;
+}
+
+#btnRefresh {
+  > svg {
+    rotate: 0deg;
+  }
+
+  &.disabled > svg {
+    animation: refresh 2s infinite cubic-bezier(.68,-0.55,.27,1.55);
+  }
+}
+
+@keyframes refresh {
+  100% {
+    rotate: 360deg;
+  }
+}
+
 .copied {
   position: absolute;
   left: 30vw;
@@ -257,10 +277,10 @@ input.text::placeholder {
 
 @keyframes copy_notice {
   20% {
-    transform: translateY(-30px) scale(1);
+    transform: translateY(-20px) scale(1);
   }
   90% {
-    transform: translateY(-30px) scale(1);
+    transform: translateY(-20px) scale(1);
   }
   100% {
     transform: translateY(0) scale(0);

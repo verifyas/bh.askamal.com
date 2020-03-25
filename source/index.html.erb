@@ -30,9 +30,9 @@
         Let's get your details, shall we.
       </div>
 
-      <input type="text" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required autofocus autocorrect="off" spellcheck="false">
+      <input type="text" id="userName" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required autofocus autocorrect="off" spellcheck="false">
 
-      <input type="email" placeholder="elon@junaidperfumes.com" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required>
+      <input type="email" id="userEmail" placeholder="elon@junaidperfumes.com" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required>
     </div>
 
     <div>
@@ -69,7 +69,7 @@
       </select>
     </div>
 
-    <input type="submit" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-xl" style="color: #EFEFF5; font-family: 'Montserrat', sans-serif; background: #3634E3; font-weight: 800;" value="request access">
+    <input type="submit" id="btnRegister" class="w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-xl cursor-pointer" style="color: #EFEFF5; font-family: 'Montserrat', sans-serif; background: #3634E3; font-weight: 800;" value="request access">
 
     <div>
       <img src="/images/logo-gray.svg" title="Amal Logo" class="block m-auto">
@@ -88,11 +88,11 @@
           <img src="/images/line.svg" style="width: 60vw; max-width: unset;">
         </div>
         <div class="pl-3">
-          Yazin, there are
+          <span class="userName">Ahmed</span>, there are
           <div id="counter" style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3rem; color: #3634e3;line-height: 1.1;letter-spacing:2px;">1,234</div>
           ahead of you in line
         </div>
-        <button class="rounded-full mt-2 pl-4 pr-4 pt-1 pb-1" style="background: #EBEBF3; color: #626189">
+        <button id="btnRefresh" class="rounded-full mt-2 mb-2 pl-4 pr-4 pt-1 pb-1" style="background: #EBEBF3; color: #626189" onclick="refreshStatus()">
           <svg class="inline-block relative mr-1" style="top: -3px;" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.325 2.62102C17.9168 2.5838 17.5557 2.88458 17.5185 3.29278L17.4202 4.37153C15.7517 1.75136 12.8556 0 9.49976 0C5.88969 0 2.70823 2.06041 1.12892 5.15283C0.942478 5.51788 1.08728 5.96494 1.45233 6.15138C1.81745 6.33782 2.26444 6.19306 2.45088 5.82797C3.78746 3.21085 6.47149 1.48439 9.49976 1.48439C12.2599 1.48439 14.7507 2.92169 16.1778 5.17339L15.1195 4.41758C14.7859 4.17937 14.3224 4.25663 14.0842 4.59018C13.846 4.92376 13.9232 5.38726 14.2568 5.6255L17.4658 7.91744C17.9362 8.25272 18.5849 7.94579 18.6363 7.38087L18.9967 3.42757C19.034 3.01932 18.7332 2.65824 18.325 2.62102Z" fill="#626189"/>
             <path d="M17.5475 12.8488C17.1824 12.6624 16.7354 12.8072 16.5489 13.1722C15.2123 15.7894 12.5283 17.5158 9.50005 17.5158C6.73994 17.5158 4.24906 16.0785 2.82204 13.8268L3.8803 14.5826C4.21388 14.8208 4.67738 14.7436 4.91562 14.41C5.15383 14.0764 5.07657 13.6129 4.74303 13.3747L1.53396 11.0828C1.06939 10.7509 0.41544 11.0486 0.363486 11.6193L0.00311379 15.5726C-0.0341073 15.9808 0.266667 16.3419 0.674837 16.3791C1.08356 16.4163 1.44416 16.1152 1.48134 15.7074L1.57968 14.6286C3.24806 17.2488 6.14425 19.0002 9.50005 19.0002C13.1101 19.0002 16.2916 16.9398 17.8709 13.8474C18.0573 13.4823 17.9125 13.0353 17.5475 12.8488Z" fill="#626189"/>
@@ -106,21 +106,25 @@
     <div class="h-full pl-4 pr-4 pt-2 pb-4" style="border-top: 1px solid #d4d3e3;">
       <div class="rounded-full pt-1 pl-4 pr-4 pb-1 font-bold mb-2 inline-block" style="color: #1210a2; background: #a3adf5;">HOT TIP</div>
       <div class="text-lg pl-4 pr-2" style="color: #79799e;">
-        <strong>Jump 50 spots ✨</strong> when someone signs up using your link:
+        <strong>Jump <span id="skipSpots">50</span> spots ✨</strong> when someone signs up using your link:
+      </div>
+
+      <div class="copied">
+        Copied!
       </div>
 
       <div class="rounded-full flex flex-row mt-2 items-center" style="background: #EBEBF3;">
-        <div class="copied">
-          Copied!
-        </div>
-        <div id="user-link" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl" style="font-family: Courier New; color: #504C79;"><span style='position: absolute; opacity: 0;'>https://</span>amal.is/🤗/yazin</div> 
+        <div id="user-link" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl overflow-hidden whitespace-no-wrap" style="font-family: Courier New; color: #504C79;">
+          <span style='position: absolute; opacity: 0;'>https://</span>
+          <span id="userLink" class="block">amal.is/🤗/...</span>
+        </div> 
 
-        <div class="copy-icon flex-0 pr-4" data-clipboard-target="#user-link">
-          <img src="/images/copy-icon.svg" style="width:20px;">
+        <div class="copy-icon flex-0 mr-3 ml-1" data-clipboard-target="#user-link" style="width: 25px;">
+          <img src="/images/copy-icon.svg">
         </div>
       </div>
 
-      <div class="text-lg pl-4 pr-4 mt-4" style="color: #79799e;">Click to share a message on:</div>
+      <div class="text-lg pl-4 pr-4 mt-4 mb-1" style="color: #79799e;">How about a share on:</div>
       <div class="flex flex-row mt-1 justify-around">
         <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 font-bold border-green-500 text-green-700" style="max-width: 40vw;">WhatsApp</a>
         <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 font-bold border-blue-500 text-blue-700" style="max-width: 40vw;">Twitter</a>
@@ -194,17 +198,22 @@
     regSheet.classList.add('on');
   }
 
-  function showResultSheet() {
-    const regSheet = document.querySelectorAll('.sheet')[0];
-    regSheet.classList.remove('on');
-    regSheet.addEventListener('transitionend', function() {
+  function showResultSheet(response, prevSheet) {
+    // response contains name, link, position, skip
+    userLink.innerHTML = response['link'];
+    document.querySelector('.userName').innerHTML = response['name'];
+    skipSpots.innerHTML = response['skip'];
+
+    // show the sheet
+    prevSheet.classList.remove('on');
+    prevSheet.addEventListener('transitionend', function() {
       document.querySelectorAll('.sheet')[1].classList.add('on');
-      animateResultSheet();
+      animateResultSheet(response['position']);
     });
   }
 
-  function animateResultSheet() {
-    new CountUp('counter', 54, { duration: 6 }).start();
+  function animateResultSheet(position) {
+    new CountUp('counter', position, { duration: 6 }).start();
     
     // To animate the line, recreate it https://css-tricks.com/restart-css-animation/
     const oldCopy = document.querySelector('.line');
@@ -360,7 +369,8 @@
 
   function validateForm() {
     event.preventDefault(); // prevent automatic
-    
+
+    // name, email already checked by browser
     // check banks selected
     const banks = window.slimSelect.selected();
     if(banks.length == 0) {
@@ -368,12 +378,60 @@
       return false;
     }
 
-    alert('valid');
-    return false;
+    btnRegister.setAttribute('disabled', 'disabled');
+    _submitForm()
+      .then(async function(res) {
+        _onRegisterSuccess(await res.json());
+      })
+      .catch((err) => console.error(err))
+      .finally((_) => btnRegister.removeAttribute('disabled'));
+  }
+
+  function _onRegisterSuccess(obj) {
+    const user = obj['link'].split('/').slice(-1)[0];
+    window.localStorage.setItem('user', user);
+
+    showResultSheet(obj, document.querySelectorAll('.sheet')[0]);
   }
 
   function _submitForm() {
+    opts = {
+      'user': {
+        'name': userName.value,
+        'email': userEmail.value,
+        'banks': window.slimSelect.selected(),
+        'ref_param': window.localStorage.getItem('referrer')
+      }
+    }
 
+    return fetch('https://amal.is/users', {
+      method: 'post',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(opts)
+    });
+  }
+
+  function refreshStatus() {
+    const user = window.localStorage.getItem('user');
+    btnRefresh.classList.add('disabled');
+    btnRefresh.setAttribute('disabled', 'disabled');
+    
+    fetch(`https://amal.is/status?link=${user}`)
+      .then((res) => 
+        // appreciate the beauty
+        setTimeout(
+          async function() {
+            btnRefresh.classList.remove('disabled');
+            btnRefresh.removeAttribute('disabled');
+            showResultSheet(
+              await res.json(), 
+              document.querySelectorAll('.sheet')[1]
+            );
+          }, 
+          3500
+        ));
   }
 
   const clamp = (min, max) => (value) =>
