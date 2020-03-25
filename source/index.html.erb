@@ -23,7 +23,7 @@
   </a>
 </div>
 
-<div class="sheet sheet-first absolute bottom-0 z-10 w-full">
+<div class="sheet sheet-first absolute bottom-0 z-10 w-full  overflow-y-auto">
   <form class="block p-4 h-full flex flex-col justify-around" onsubmit="return validateForm()">
     <div>
       <div class="text-lg pl-6 pr-6" style="color: #353550;">
@@ -80,7 +80,7 @@
   </form>
 </div>
 
-<div class="sheet absolute bottom-0 z-10 w-full">
+<div class="sheet absolute bottom-0 z-10 w-full overflow-y-auto">
   <div class="h-full flex flex-col pt-3">
     <div class="flex flex-1 flex-row h-full">
       <div class="h-full flex-1 pl-4 text-lg relative" style="color: #79799e">
@@ -178,14 +178,6 @@
   function showRegistrationSheet() {
     const regSheet = document.querySelectorAll('.sheet')[0];
     regSheet.classList.add('on');
-
-    // Attach to top, so input focus on mobile doesn't hide the
-    // field you're typing in
-    regSheet.addEventListener('transitionend', function() {
-      const top = regSheet.getBoundingClientRect().top;
-      regSheet.style.top = `${top}px`;
-      regSheet.style.bottom = "";
-    });
   }
 
   function showResultSheet() {
