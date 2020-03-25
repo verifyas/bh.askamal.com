@@ -197,24 +197,28 @@
 
   function showRegistrationSheet() {
     const regSheet = document.querySelectorAll('.sheet')[0];
-    regSheet.classList.add('on');
+    regSheet.classList.add('in');
   }
 
-  function showResultSheet(response, prevSheet) {
+  function showResultSheet(response, sheetIndex = 0) {
+
     // response contains name, link, position, skip
     userLink.innerHTML = response['link'];
     document.querySelector('.userName').innerHTML = response['name'];
     skipSpots.innerHTML = response['skip'];
 
     // show the sheet
-    prevSheet.classList.remove('on');
+    const prevSheet = document.querySelectorAll('.sheet')[sheetIndex];
+    prevSheet.classList.remove('in');
     prevSheet.addEventListener('transitionend', function() {
-      document.querySelectorAll('.sheet')[1].classList.add('on');
+      document.querySelectorAll('.sheet')[1].classList.add('in');
       animateResultSheet(response['position']);
     });
+
   }
 
   function animateResultSheet(position) {
+
     new CountUp('counter', position, { duration: 6 }).start();
     
     // To animate the line, recreate it https://css-tricks.com/restart-css-animation/
@@ -387,6 +391,7 @@
     btnRegister.setAttribute('disabled', 'disabled');
     _submitForm()
       .then(async function(res) {
+
         _onRegisterSuccess(await res.json());
       })
       .catch((err) => console.error(err))
@@ -394,10 +399,11 @@
   }
 
   function _onRegisterSuccess(obj) {
+
     const user = obj['link'].split('/').slice(-1)[0];
     window.localStorage.setItem('user', user);
 
-    showResultSheet(obj, document.querySelectorAll('.sheet')[0]);
+    showResultSheet(obj, 0);
   }
 
   function _submitForm() {
@@ -431,10 +437,7 @@
           async function() {
             btnRefresh.classList.remove('disabled');
             btnRefresh.removeAttribute('disabled');
-            showResultSheet(
-              await res.json(), 
-              document.querySelectorAll('.sheet')[1]
-            );
+            showResultSheet(await res.json(), 1);
           }, 
           3500
         ));
