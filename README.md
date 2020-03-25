@@ -4,7 +4,6 @@
 
 - Fix Share on WhatsApp / Twitter buttons
 - Optimize the BG animations
-- Allow user to dismiss the sheet
 - Fade icons out on switch (use an "off" class and add it on switch)
 - Use a radial gradient in the background for enhanced visual effect
 

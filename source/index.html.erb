@@ -198,6 +198,14 @@
   function showRegistrationSheet() {
     const regSheet = document.querySelectorAll('.sheet')[0];
     regSheet.classList.add('in');
+
+    const manager = new Hammer.Manager(regSheet);
+    const swipe = new Hammer.Swipe();
+    manager.add(swipe);
+    manager.on('swipe', function(e) {
+      // handle swipe down
+      if(e.drection == 16) regSheet.classList.remove('in');
+    });
   }
 
   function showResultSheet(response, sheetIndex = 0) {

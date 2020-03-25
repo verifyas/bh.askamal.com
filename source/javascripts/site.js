@@ -5,3 +5,5 @@
 import { CountUp } from './countup.js';
 window.CountUp = CountUp;
 window.ClipboardJS = require('clipboard');
+
+window.Hammer = require('hammerjs');
