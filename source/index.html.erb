@@ -204,7 +204,7 @@
     manager.add(swipe);
     manager.on('swipe', function(e) {
       // handle swipe down
-      if(e.drection == 16) regSheet.classList.remove('in');
+      if(e.offsetDirection == 16) regSheet.classList.remove('in');
     });
   }
 
