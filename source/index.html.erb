@@ -133,7 +133,7 @@
 </div>
 
 <script>
-  var initialX, offsetX, curScreen = 0;
+  var initialX, offsetX, lastClientX, curScreen = 0;
   var screenWidth;
   const numScreens = 3, widthFactor = .65, heightFactor = .9;
 
@@ -236,12 +236,16 @@
   }
 
   function moveHandler(ev) {
+    lastClientX = ev.clientX;
     var newOffset = offsetX + (ev.clientX - initialX);
     slides.style.transform = `translateX(${newOffset}px)`;
   }
 
   function upHandler(ev) {
-    var offset = ev.clientX - initialX;
+    var offset = 
+      ev.clientX == 0 ? // Chrome bug with onPointerCancel
+        lastClientX - initialX :
+        ev.clientX - initialX;
     var nextScreen;
 
     slides.style.transitionDuration = '0.3s';

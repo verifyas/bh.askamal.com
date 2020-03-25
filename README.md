@@ -2,7 +2,6 @@
 
 ## TODO
 
-- Fix scrollback bug on Chrome
 - Fix Share on WhatsApp / Twitter buttons
 - Optimize the BG animations
 - Allow user to dismiss the sheet
