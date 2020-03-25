@@ -115,11 +115,10 @@
 
       <div class="rounded-full flex flex-row mt-2 items-center" style="background: #EBEBF3;">
         <div id="user-link" class="flex-1 pl-4 pt-2 pb-2 bg-transparent border-none text-xl overflow-hidden whitespace-no-wrap" style="font-family: Courier New; color: #504C79;">
-          <span style='position: absolute; opacity: 0;'>https://</span>
           <span id="userLink" class="block">amal.is/🤗/...</span>
         </div> 
 
-        <div class="copy-icon flex-0 mr-3 ml-1" data-clipboard-target="#user-link" style="width: 25px;">
+        <div class="copy-icon flex-0 mr-3 ml-1" style="width: 25px;">
           <img src="/images/copy-icon.svg">
         </div>
       </div>
@@ -180,7 +179,10 @@
       closeOnSelect: false
     });
     
-    const clipboard = new ClipboardJS('.copy-icon');
+    const clipboard = new ClipboardJS('.copy-icon',
+      {
+        text: (trigger) => 'https://' + userLink.innerHTML
+      });
     clipboard.on('success', showCopiedNotice);
   }
 
@@ -222,7 +224,7 @@
   }
 
   function showCopiedNotice() {
-    const elem = document.getElementsByClassName('copied')[0];
+    const elem = document.querySelector('.copied');
     elem.classList.add('on');
     setTimeout(() => elem.classList.remove('on'), 2000);
   }
