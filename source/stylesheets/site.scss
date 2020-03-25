@@ -110,11 +110,11 @@ input.text::placeholder {
 }
 
 #topHeading {
-  height: 60px;
-  transition: height .25s linear;
+  max-height: 60px;
+  transition: max-height .25s linear;
 
   &.off {
-    height: 0px;
+    max-height: 0px;
   }
 }
 
