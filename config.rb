@@ -35,7 +35,6 @@ configure :build do
   activate :gzip
   activate :minify_html
   activate :images do |images|
-    # Optimize images (default: false)
     images.optimize = true
   end
   activate :search_engine_sitemap

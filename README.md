@@ -2,11 +2,12 @@
 
 ## TODO
 
-- Fade icons out on switch (use an "off" class and add it on switch)
-- Use a radial gradient in the background for enhanced visual effect
-- Optimize the BG animations
 - Fix scrollback bug on Chrome
 - Fix Share on WhatsApp / Twitter buttons
+- Optimize the BG animations
+- Allow user to dismiss the sheet
+- Fade icons out on switch (use an "off" class and add it on switch)
+- Use a radial gradient in the background for enhanced visual effect
 
 ### A Git repo of a Middleman 4 project set up with Tailwind CSS and Webpack preconfigured. Which is great, because Webpack is kind of a bitch.
 

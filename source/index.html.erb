@@ -2,27 +2,6 @@
   full_title: false %>
 <% set_meta_tags "theme-color": "#3E40F8" %>
 
-<div class="animated-bg"></div>
-
-<div class="flex-col w-full h-full justify-between bg-teal-300 flex overflow-x-hidden" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
-  <div id='topHeading' class="text-3xl text-white text-center mx-4 my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.05;">
-    Still guessing where<br>
-    it’s all going?
-  </div>
-  <div id="slides" class="flex flex-1 overflow-y-hidden justify-around relative items-center" >
-    <img src="/images/1.svg" draggable="false" class="select-none pointer-events-none max-h-full">
-    <img src="/images/2.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
-    <img src="/images/3.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
-  </div>
-  <div id='imageHeading' class="text-2xl text-center text-white font-bold my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.1; color: #ECEEF8;">
-    Amal magically breaks <br>
-    down your spending
-  </div>
-  <a class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer block" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" href="javascript:showRegistrationSheet()">
-    get early access
-  </a>
-</div>
-
 <div class="sheet sheet-first absolute bottom-0 z-10 w-full  overflow-y-auto">
   <form class="block p-4 h-full flex flex-col justify-around" onsubmit="return validateForm()">
     <div>
@@ -30,9 +9,9 @@
         Let's get your details, shall we.
       </div>
 
-      <input type="text" id="userName" placeholder="Elon Misk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required autofocus autocorrect="off" spellcheck="false">
+      <input type="text" id="userName" placeholder="Elon Musk" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required autofocus autocorrect="off" spellcheck="false">
 
-      <input type="email" id="userEmail" placeholder="elon@junaidperfumes.com" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required>
+      <input type="email" id="userEmail" placeholder="elon@spacex.com" class="text w-full pl-6 pr-6 pt-3 pb-3 rounded-full text-lg mt-3" required>
     </div>
 
     <div>
@@ -130,6 +109,27 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="animated-bg"></div>
+
+<div class="flex-col w-full h-full justify-between bg-teal-300 flex overflow-x-hidden" style="background: linear-gradient(180deg, #3E40F8 0%, #3537F8 100%);">
+  <div id='topHeading' class="text-3xl text-white text-center mx-4 my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.05;">
+    Still guessing where<br>
+    it’s all going?
+  </div>
+  <div id="slides" class="flex flex-1 overflow-y-hidden justify-around relative items-center" >
+    <img src="/images/1.svg" draggable="false" class="select-none pointer-events-none max-h-full">
+    <img src="/images/2.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
+    <img src="/images/3.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
+  </div>
+  <div id='imageHeading' class="text-2xl text-center text-white font-bold my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.1; color: #ECEEF8;">
+    Amal magically breaks <br>
+    down your spending
+  </div>
+  <a class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer block" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" href="javascript:showRegistrationSheet()">
+    get early access
+  </a>
 </div>
 
 <script>

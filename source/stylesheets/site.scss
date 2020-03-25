@@ -76,23 +76,29 @@ input.text::placeholder {
 }
 
 .sheet {
-  opacity: 0;
-  &.on { opacity: 1; }
-
   min-height: 450px; // the shorter screen
   max-height: 90vh;
-
+  
   background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
   box-shadow: 0px -2px 10px rgba(12, 11, 127, 0.3);
   border-radius: 30px 30px 0px 0px;
-  
-  transform: translateY(100vh) scale(.3);
-  transition: transform .45s cubic-bezier(.56,-0.03,.44,1.31),
-              opacity .35s ease-out;
+
+  transform: translateY(-1000vw); // hide me
+
+  &.on {
+    animation: sheet .45s cubic-bezier(.56,-0.03,.44,1.31) forwards;
+  }
 }
 
-.sheet.on {
-  transform: translateY(0) scale(1);
+@keyframes sheet {
+  0% {
+    transform: translateY(130vw) scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1; 
+  }
 }
 
 .sheet > div {
