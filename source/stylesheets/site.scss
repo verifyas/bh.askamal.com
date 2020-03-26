@@ -78,6 +78,7 @@ input.text::placeholder {
 .sheet {
   min-height: 450px; // the shorter screen
   max-height: 90vh;
+  max-width: 600px;
   
   background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
   box-shadow: 0px -2px 10px rgba(12, 11, 127, 0.3);
