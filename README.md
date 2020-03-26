@@ -2,10 +2,18 @@
 
 ## TODO
 
+- Add meta tags for preview image on WhatsApp / Twitter
 - Fix Share on WhatsApp / Twitter buttons
 - Optimize the BG animations
-- Fade icons out on switch (use an "off" class and add it on switch)
-- Use a radial gradient in the background for enhanced visual effect
+  - Fade icons out on switch (use an "off" class and add it on switch)
+  - Use a radial gradient in the background for enhanced visual effect
+
+Post release:
+- Draft snarky messages for sharing
+- Add menu to allow uses to share whichever message they like
+- Update "get early access" button when localStorage['user'] exists, and show result sheet
+- Track referrals activity via Amplitude
+- Link up to ConvertKit and draft email sequence
 
 ### A Git repo of a Middleman 4 project set up with Tailwind CSS and Webpack preconfigured. Which is great, because Webpack is kind of a bitch.
 
