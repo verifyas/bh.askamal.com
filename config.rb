@@ -42,7 +42,7 @@ configure :build do
   activate :robots, rules: [{ user_agent: '*', allow: %w[/] }],
                     sitemap: File.join(@app.data.site.host, 'sitemap.xml')
 end
-activate :meta_tags
+# activate :meta_tags
 activate :inline_svg
 activate :external_pipeline,
          name: :webpack,
