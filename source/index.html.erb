@@ -131,7 +131,7 @@
 <script>
   var initialX, offsetX, lastClientX, curScreen = 0;
   var screenWidth;
-  var numScreens = 3, widthFactor = .7, heightFactor = .9;
+  var numScreens = 3, widthFactor = .65, heightFactor = .9;
 
   function loadScreen(nextScreen) {
     // Uses the globals numScreens, curScreen, offsetX
@@ -267,7 +267,7 @@
 
   function updateScreenWidth() {
     screenWidth = document.body.clientWidth;
-    widthFactor = screenWidth < 600 ? 0.7 : 0.55; // desktop
+    widthFactor = screenWidth < 600 ? 0.65 : 0.55; // desktop
     slides.style.width = `${numScreens * screenWidth * widthFactor}px`;
     updateOffset();
   }
