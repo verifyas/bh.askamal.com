@@ -140,30 +140,30 @@ input.text::placeholder {
   overflow: hidden;
 }
 
-.animated-bg > .single {
+.animated-bg > div {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  left: 50%;
-  top: 20%;
+  top: 50vh;
+  left: 50vw;
+  width: 100px;
+  height: 100px;
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  // background-image: url(/images/bg-hand.svg);
-  
-  &.on {
-    transition: all 5s linear -3s; // ease-in;
-    transform: rotate(540deg);
-  }
 
-  &:nth-child(2).on{
-    transition-duration: 4s;
-  }
-  &:nth-child(3).on{
-    transition-duration: 5s;
-  }
-  &:nth-child(4).on{
-    transition-duration: 3s;
+  // -s: scale
+  // -d: duration
+  // -r: rotation
+  // -o: opacity
+  transform: scale(1) rotate(0deg) translateY(0); // initial
+  animation: eject var(--d, 1s) ease-in forwards;
+  opacity: 1;
+}
+
+@keyframes eject {
+  100% {
+    transform: scale(var(--s, 1)) rotate(var(--r, 0deg)) translateY(50vh);
+    opacity: var(--o, 1);
   }
 }
 

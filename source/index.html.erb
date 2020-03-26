@@ -165,7 +165,7 @@
 
     updateScreenWidth();
     updateHeights();
-    createBgElements();
+    beginAnimating();
 
     // Initialize dynamic form elements
     window.slimSelect = new SlimSelect({
@@ -326,54 +326,34 @@
     'Hidden fees,<br>nowhere left to hide',
   ]
 
-  function createBgElements() {
-    window.setInterval(createSingleElement, 250);
-  }
-
-  function refreshElements() {
-    const MAX_NUM_ELEMENTS = 10;
-    var elems = document.querySelectorAll('.animated-bg > .single.on');
-    if (elems.length < MAX_NUM_ELEMENTS) createSingleElement(); // per interval
-  }
-
-  function createSingleElement() {
-    const imageSet = IMAGES[curScreen];
-    const imageIndex = Math.floor(Math.random() * imageSet.length);
-
+  function beginAnimating() {
+    // controls:
+    // - particle type
+    // - heading
+    // - speed of particle (by adjusting the animation duration)
+    // - rate of particle ejection (particle count / second)
     const root = document.querySelector('.animated-bg');
-    const elem = document.createElement('div');
-    root.appendChild(elem);
 
-    elem.classList.add('single');
-    elem.addEventListener('transitionend', destroyElement);
+    window.setInterval(() => 
+      requestAnimationFrame(function() {
+        const randIndex = Math.ceil( Math.random() * IMAGES[curScreen].length ) - 1;
+        const image = IMAGES[curScreen][randIndex];
 
-    // pick a point along the circumference of the elem
-    const elemWidth = root.clientWidth;
-    const elemHeight = root.clientHeight;
-    const circumference = 2 * (elemWidth + elemHeight); // in px
-    const point = Math.round(Math.random() * circumference);
-    
-    // transform to that zpoint, and turn on the animation
-    var coords = generateCoords(elemWidth, elemHeight);
-    elem.style.left = coords[0] + 'px';
-    elem.style.top = coords[1] + 'px';
-    elem.style.transform = ` scale(${Math.round(Math.random() * 3)}) rotate(270deg)`;
-    // elem.style.transform += ` translate(${result[0]}px, ${result[1]}px)`;
+        const rotation = Math.round(Math.random() * 135) - 135/2;
+        const duration = (2 + Math.random() * 2).toFixed(1);
+        const scale = 1 + Math.round(Math.random() * 2); // 1 - 3x
+        const opacity = (.25 + Math.random()).toFixed(1); // 1 - 3x
 
-    elem.style.backgroundImage = `url(${imageSet[imageIndex]})`;
-    elem.style.transitionDelay = 3 * Math.random() + 's';
-    elem.classList.add('on');
+        ejectParticle(root, image, `${rotation}deg`, `${duration}s`, scale, opacity);
+      }), 500); // TODO: Vary the rate
   }
 
-  function generateCoords(screenWidth, screenHeight) {
-    const CLEARANCE = 200; // distance travelled beyond the edge
-
-    // We want the points to travel along the left/right sides, avoiding
-    // the text on the top/bottom of the page
-    var x = Math.random() < 0.5 ? 0 - CLEARANCE : screenWidth + CLEARANCE;
-    var y = Math.random() * screenHeight;
-    
-    return [x, y];
+  function ejectParticle(root, image, rotation, duration, scale, opacity) {
+    const particle = document.createElement('div');
+    particle.style = `--r:${rotation};--d:${duration};--s:${scale};--o:${opacity}`;
+    particle.style.backgroundImage = `url(${image})`;
+    root.appendChild(particle);
+    particle.addEventListener('animationend', destroyElement);
   }
 
   function destroyElement(event) {
