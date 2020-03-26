@@ -126,6 +126,9 @@
   <a class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer block" style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" href="javascript:showRegistrationSheet()">
     get early access
   </a>
+  <a id="btnShowPosition" class="rounded-full py-2 mx-8 mt-2 mb-4 text-xl text-center cursor-pointer block" style="display: none;font-family: 'Montserrat', sans-serif; font-weight: 800; color: #116F2E; background: #67D881;" href="javascript:showPositionInLine()">
+    check position
+  </a>
 </div>
 
 <script>
@@ -166,6 +169,7 @@
     updateScreenWidth();
     updateHeights();
     beginAnimating();
+    showPositionButtonIfRegistered();
 
     // Initialize dynamic form elements
     window.slimSelect = new SlimSelect({
@@ -180,6 +184,13 @@
         text: (trigger) => 'https://' + userLink.innerHTML
       });
     clipboard.on('success', showCopiedNotice);
+  }
+
+  function showPositionButtonIfRegistered() {
+    const user = window.localStorage.getItem('user');
+    if(user != null && user.length > 0) {
+      btnShowPosition.style.display = 'block';
+    }
   }
 
   function trackReferrer() {
@@ -204,7 +215,7 @@
     });
   }
 
-  function showResultSheet(response, sheetIndex = 0) {
+  function showResultSheet(response, sheetIndex) {
 
     // response contains name, link, position, skip
     userLink.innerHTML = response['link'];
@@ -212,12 +223,16 @@
     skipSpots.innerHTML = response['skip'];
 
     // show the sheet
-    const prevSheet = document.querySelectorAll('.sheet')[sheetIndex];
-    prevSheet.classList.remove('in');
-    prevSheet.addEventListener('transitionend', function() {
+    const showSheet = function() {
       document.querySelectorAll('.sheet')[1].classList.add('in');
       animateResultSheet(response['position']);
-    });
+    }
+
+    if(sheetIndex == null) return showSheet();
+
+    const prevSheet = document.querySelectorAll('.sheet')[sheetIndex];
+    prevSheet.classList.remove('in');
+    prevSheet.addEventListener('transitionend', showSheet);
 
   }
 
@@ -426,6 +441,13 @@
           }, 
           3500
         ));
+  }
+
+  function showPositionInLine() {
+    const user = window.localStorage.getItem('user');
+    
+    fetch(`https://amal.is/status?link=${user}`)
+      .then(async (res) => showResultSheet(await res.json()));
   }
 
   function shareOn(platform) {
