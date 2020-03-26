@@ -2,7 +2,6 @@
 
 ## TODO
 
-- Add meta tags for preview image on WhatsApp / Twitter
 - Fix Share on WhatsApp / Twitter buttons
 - Optimize the BG animations
   - Will Change https://stackoverflow.com/questions/26907265/css-will-change-how-to-use-it-how-it-works + https://medium.com/outsystems-experts/flip-your-60-fps-animations-flip-em-good-372281598865

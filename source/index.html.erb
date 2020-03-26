@@ -100,8 +100,8 @@
 
       <div class="text-lg pl-4 pr-4 mt-4 mb-1" style="color: #79799e;">How about a share on:</div>
       <div class="flex flex-row mt-1 justify-around">
-        <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 font-bold border-green-500 text-green-700" style="max-width: 40vw;">WhatsApp</a>
-        <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 font-bold border-blue-500 text-blue-700" style="max-width: 40vw;">Twitter</a>
+        <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 font-bold border-green-500 text-green-700" style="max-width: 40vw;" href="javascript:shareOn('whatsapp')">WhatsApp</a>
+        <a class="flex-1 text-lg rounded-full border-2 text-center pt-1 pb-1 font-bold border-blue-500 text-blue-700" style="max-width: 40vw;" href="javascript:shareOn('twitter')">Twitter</a>
       </div>
     </div>
   </div>
@@ -445,6 +445,24 @@
           }, 
           3500
         ));
+  }
+
+  function shareOn(platform) {
+    const link = "https://amal.is/%F0%9F%A4%97/" + encodeURI(window.localStorage.getItem('user'));
+
+    var destination;
+    switch(platform) {
+      case 'twitter':
+        var message = "Launching%20in%20Bahrain%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..";
+        destination = `https://twitter.com/intent/tweet/?url=${link}&text=${message}`
+        break;
+      case 'whatsapp':
+        var message = `${link}%0A%0AThey're%20launching%20in%20Bahrain%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..`;
+        destination = `https://wa.me/?text=${message}`;
+        break;
+    }
+
+    window.open(destination, '_blank');
   }
 
   const clamp = (min, max) => (value) =>
