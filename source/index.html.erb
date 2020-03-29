@@ -415,6 +415,7 @@
         'name': userName.value,
         'email': userEmail.value,
         'banks': window.slimSelect.selected(),
+        'country': 'bh',
         'ref_param': window.localStorage.getItem('referrer')
       }
     }
@@ -454,12 +455,14 @@
   }
 
   function shareOn(platform) {
-    const link = "https://amal.is/%F0%9F%A4%97/" + encodeURI(window.localStorage.getItem('user'));
+    var link = "https://amal.is/%F0%9F%A4%97/" + encodeURI(window.localStorage.getItem('user'));
 
     var destination;
     switch(platform) {
       case 'twitter':
         var message = "Launching%20in%20Bahrain%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..";
+        // Twitter breaks links with emoji (only the pre-emoji part is clickable)
+        link = link.replace('%F0%9F%A4%97', 'with');
         destination = `https://twitter.com/intent/tweet/?url=${link}&text=${message}`
         break;
       case 'whatsapp':
