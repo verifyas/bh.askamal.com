@@ -12,38 +12,33 @@
 
     <div>
       <div class="text text-lg pl-6 pr-6 mb-3" style="color: #353550; font-family: Open Sans, Arial;">
-        Which banks do you use in Bahrain?
+        Which banks do you use in the UAE?
         (pick as many as you like)
       </div>
 
       <select id="bankSelect" multiple="" size="1">
-        <option value="baraka">Al Baraka Islamic Bank</option>
-        <option value="alsalam">Alsalam Bank</option>
-        <option value="amex">American Express</option>
-        <option value="arab">Arab Bank</option>
-        <option value="aub">AUB - Ahli United Bank</option>
-        <option value="bhcredit">Bahrain Credit</option>
-        <option value="bbk">BBK - Bank of Bahrain and Kuwait</option>
-        <option value="bdb">BDB - Bahrain Development Bank</option>
-        <option value="bisb">BISB - Bahrain Islamic Bank</option>
-        <option value="bnp">BNP Paribas</option>
-        <option value="citi">Citibank</option>
-        <option value="credimax">Credimax</option>
-        <option value="fab">FAB - First Abu Dhabi Bank</option>
-        <option value="future">Future Bank</option>
-        <option value="habib">Habib Bank</option>
-        <option value="hsbc">HSBC Bank</option>
-        <option value="icici">ICICI Bank</option>
-        <option value="ila">ila Bank</option>
-        <option value="ithmaar">Ithmaar Bank</option>
-        <option value="kfh">KFH - Kuwait Finance House</option>
-        <option value="khcb">KHCB - Khaleeji Commercial Bank</option>
-        <option value="mashreq">Mashreq Bank</option>
-        <option value="meem">Meem</option>
-        <option value="nbb">NBB - National Bank of Bahrain</option>
-        <option value="nbk">NBK - National Bank of Kuwait</option>
-        <option value="sc">SC - Standard Chartered</option>
-        <option value="ubl">UBL - United Bank Limited</option>
+        <option value='adcb'>Abu Dhabi Commercial Bank (ADCB)</option>
+        <option value='adib'>Abu Dhabi Islamic Bank (ADIB)</option>
+        <option value='ajman'>Ajman Bank</option>
+        <option value='alhilal'>Al Hilal Bank</option>
+        <option value='sharjah'>Bank of Sharjah</option>
+        <option value='citi'>Citibank</option>
+        <option value='cbd'>Commercial Bank of Dubai (CBD)</option>
+        <option value='dib'>Dubai Islamic Bank (DIB)</option>
+        <option value='ei'>Emirates Islamic Bank</option>
+        <option value='enbd'>Emirates NBD (ENBD)</option>
+        <option value='fab'>First Abu Dhabi Bank (FAB)</option>
+        <option value='liv'>Liv</option>
+        <option value='hsbc'>HSBC</option>
+        <option value='mashreq'>Mashreq bank</option>
+        <option value='neo'>Mashreq NEO</option>
+        <option value='nbf'>National Bank of Fujairah (NBF)</option>
+        <option value='nbq'>National Bank of Umm Al Qaiwain (NBQ)</option>
+        <option value='noor'>Noor Bank</option>
+        <option value='rakbank'>RAKBANK</option>
+        <option value='sib'>Sharjah Islamic Bank (SIB)</option>
+        <option value='sc'>Standard Chartered</option>
+        <option value='unb'>Union National Bank (UNB)</option>
       </select>
     </div>
 
@@ -52,7 +47,7 @@
     <div>
       <img src="/images/logo-gray.svg" title="Amal Logo" class="block m-auto">
       <div class="text-sm text-center mt-3" style="color: #B3B3CB;">
-        Amal AI is an authorized participant in the Fintech Regulatory Sandbox in the Kingdom of Bahrain, operating as a Sandbox Ancillary Service Provider
+         Amal AI Ltd (D.B.A. "Amal") is registered at the Dubai International Financial Center ("DIFC") under license number CL3572. Amal’s registered address is Office 8 & 9, Level 4, Gate District Precinct, Building 05, Dubai International Financial Centre, P. O. Box 507211, Dubai, United Arab Emirates. 
       </div>
     </div>
   </form>
@@ -118,9 +113,9 @@
     it’s all going?
   </div>
   <div id="slides" class="flex flex-1 overflow-y-hidden justify-around relative items-center" >
-    <img src="/images/1.svg" draggable="false" class="select-none pointer-events-none max-h-full">
-    <img src="/images/2.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
-    <img src="/images/3.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
+    <img src="/images/ae/1.svg" draggable="false" class="select-none pointer-events-none max-h-full">
+    <img src="/images/ae/2.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
+    <img src="/images/ae/3.svg" draggable="false" class="select-none pointer-events-none max-h-full" >
   </div>
   <div id='imageHeading' class="text-2xl text-center text-white font-bold my-2" style="font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1.1; color: #ECEEF8;">
     Amal magically breaks <br>
@@ -327,10 +322,10 @@
     ],
     [
       '/images/bg-hsbc.svg',
-      '/images/bg-bisb.svg',
-      '/images/bg-kfh.svg',
-      '/images/bg-bbk.svg',
-      '/images/bg-ithmaar.svg',
+      '/images/bg-mashreq.svg',
+      '/images/bg-acdb.svg',
+      '/images/bg-enbd.svg',
+      '/images/bg-citi.svg',
     ],
     [
       '/images/fee-1.svg',
@@ -415,7 +410,7 @@
         'name': userName.value,
         'email': userEmail.value,
         'banks': window.slimSelect.selected(),
-        'country': 'bh',
+        'country': 'ae',
         'ref_param': window.localStorage.getItem('referrer')
       }
     }
@@ -460,13 +455,13 @@
     var destination;
     switch(platform) {
       case 'twitter':
-        var message = "Launching%20in%20Bahrain%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..";
+        var message = "Launching%20in%20the%20UAE%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..";
         // Twitter breaks links with emoji (only the pre-emoji part is clickable)
         link = link.replace('%F0%9F%A4%97', 'with');
         destination = `https://twitter.com/intent/tweet/?url=${link}&text=${message}`
         break;
       case 'whatsapp':
-        var message = `${link}%0A%0AThey're%20launching%20in%20Bahrain%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..`;
+        var message = `${link}%0A%0AThey're%20launching%20in%20the%20UAE%20soon,%20and%20early%20users%20get%20free%20access%20for%20life.%20Just%20booked%20my%20spot..`;
         destination = `https://wa.me/?text=${message}`;
         break;
     }
