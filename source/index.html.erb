@@ -196,8 +196,16 @@
     location.hash = '';
     if(referrer.length == 0) return;
 
-    // save to persistent storage
-    window.localStorage.setItem('referrer', referrer);
+    // are we checking status, or recording a referral?
+    const statusPrefix = 'status.';
+    if(referrer.startsWith(statusPrefix)) {
+      // checking status
+      const user = referrer.slice(statusPrefix.length);
+      window.localStorage.setItem('user', user);
+    } else {
+      // recording a referral
+      window.localStorage.setItem('referrer', referrer);
+    }
   }
 
   function showRegistrationSheet() {
